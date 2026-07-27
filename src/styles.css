@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    /* padding: 0px; */
+    /* margin: 0px; */
+}
+
+html,
+body{
+    background:
+        radial-gradient(circle at 85% 10%, rgba(24,224,196,.08), transparent 35%),
+        radial-gradient(circle at 15% 80%, rgba(24,224,196,.05), transparent 40%),
+        linear-gradient(135deg,#070b13,#0a101b,#111827);
+
+    background-attachment:fixed;
+}
+
+body{
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    color: white;
+
+    background:
+        /* Top-right glow */
+        radial-gradient(
+            circle at 85% 10%,
+            rgba(24, 224, 196, 0.08),
+            transparent 35%
+        ),
+
+        /* Bottom-left subtle glow */
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(24, 224, 196, 0.05),
+            transparent 40%
+        ),
+
+        /* Main background */
+        linear-gradient(
+            135deg,
+            #070b13 0%,
+            #0a101b 50%,
+            #111827 100%
+        );
+
+    min-height: 100vh;
+}

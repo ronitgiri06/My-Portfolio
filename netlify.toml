@@ -1,0 +1,13 @@
+[build]
+  command = "ng build --configuration=production"
+  publish = "dist/ronit-portfolio0"
+
+[build.environment]
+  NODE_VERSION = "18.20.0"
+  NPM_VERSION = "10.5.0"
+  NG_CLI_ANALYTICS = "false"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
