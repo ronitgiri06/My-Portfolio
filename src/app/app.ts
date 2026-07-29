@@ -177,11 +177,30 @@ export class App implements AfterViewInit, OnDestroy {
 onSubmitContact(): void {
   if (this.contactForm.valid) {
     const form = document.querySelector('form.contact-form') as HTMLFormElement;
+    const formData = new FormData(form);
     
-    if (form) {
-      // Submit the form directly
-      form.submit();
-    }
+    // Add form name for Netlify
+    formData.append('form-name', 'contact');
+    
+    // Send to Netlify using fetch
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData as any).toString()
+    })
+    .then(response => {
+      if (response.ok) {
+        alert('✅ Thank you for your message! I\'ll get back to you soon.');
+        this.contactForm.reset();
+        // Optionally scroll to top or show success message
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        alert('❌ Something went wrong. Please try again.');
+      }
+    })
+    .catch(() => {
+      alert('❌ Something went wrong. Please try again.');
+    });
   }
 }
 
