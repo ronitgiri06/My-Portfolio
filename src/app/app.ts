@@ -175,14 +175,12 @@ export class App implements AfterViewInit, OnDestroy {
 onSubmitContact(): void {
   if (this.contactForm.valid) {
     const form = document.querySelector('form') as HTMLFormElement;
-    
-    // Create FormData object
     const formData = new FormData(form);
     
     // Add form name for Netlify
     formData.append('form-name', 'contact');
     
-    // Send data to Netlify
+    // Send to Netlify
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
