@@ -244,14 +244,12 @@
 </section>
 
 <!-- ===================== CONTACT ===================== -->
-<!-- ===================== CONTACT ===================== -->
 <section id="contact">
   <div class="section-label">06 — contact</div>
   <h2 class="section-title">Let's build something <span class="gradient-text">good</span>.</h2>
   <p class="section-subtitle">Have a role, project, or just want to say hi? I'd love to hear from you.</p>
 
   <div class="contact-wrapper">
-    <!-- Left side - Contact Info -->
     <div class="contact-info reveal">
       <h3>Get in touch</h3>
       <p>
@@ -283,7 +281,6 @@
       </div>
     </div>
 
-    <!-- Right side - Contact Form -->
     <div class="contact-form-wrapper reveal">
       <div class="status-badge">
         <span class="dot"></span>
@@ -291,15 +288,19 @@
       </div>
       
       <form 
-  [formGroup]="contactForm" 
-  (ngSubmit)="onSubmitContact()" 
-  class="contact-form"
-  data-netlify="true"
-  name="contact"
-  method="POST">
+        [formGroup]="contactForm" 
+        (ngSubmit)="onSubmitContact()" 
+        class="contact-form"
+        data-netlify="true"
+        name="contact"
+        method="POST"
+        netlify-honeypot="bot-field">
         
-        <!-- This hidden field is REQUIRED for Netlify -->
         <input type="hidden" name="form-name" value="contact">
+        
+        <div style="display:none;">
+          <label>Don't fill this out if you're human: <input name="bot-field"></label>
+        </div>
         
         <div class="form-group">
           <label for="name">Your Name</label>
