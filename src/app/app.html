@@ -250,6 +250,7 @@
   <p class="section-subtitle">Have a role, project, or just want to say hi? I'd love to hear from you.</p>
 
   <div class="contact-wrapper">
+    <!-- Left side - Contact Info -->
     <div class="contact-info reveal">
       <h3>Get in touch</h3>
       <p>
@@ -281,97 +282,32 @@
       </div>
     </div>
 
-    <div class="contact-form-wrapper reveal">
-      <div class="status-badge">
-        <span class="dot"></span>
-        Usually replies within a day
+    <!-- Right side - Contact CTA -->
+    <div class="contact-cta reveal">
+      <div class="cta-content">
+        <div class="cta-icon">
+          <i class="fa-regular fa-paper-plane"></i>
+        </div>
+        <h3>Let's Work Together</h3>
+        <p>
+          Have a project in mind or just want to say hello? 
+          I'm always open to discussing new opportunities and ideas.
+        </p>
+        <div class="cta-buttons">
+          <a href="mailto:ronitgiri06@gmail.com" class="btn-primary">
+            <i class="fa-solid fa-envelope"></i>
+            Email Me
+          </a>
+          <a href="/form.html" target="_blank" class="btn-secondary">
+            <i class="fa-regular fa-comment"></i>
+            Contact Form
+          </a>
+        </div>
+        <div class="cta-status">
+          <span class="status-dot"></span>
+          Usually replies within a day
+        </div>
       </div>
-      
-      <form 
-        [formGroup]="contactForm" 
-        (ngSubmit)="onSubmitContact()" 
-        class="contact-form"
-        data-netlify="true"
-        name="contact"
-        method="POST"
-        netlify-honeypot="bot-field">
-        
-        <input type="hidden" name="form-name" value="contact">
-        
-        <div style="display:none;">
-          <label>Don't fill this out if you're human: <input name="bot-field"></label>
-        </div>
-        
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input 
-            type="text" 
-            id="name" 
-            formControlName="name"
-            name="name"
-            placeholder="John Doe"
-            class="form-control"
-            [class.error]="name?.invalid && name?.touched">
-          @if (name?.invalid && name?.touched) {
-            <div class="error-message">
-              @if (name?.errors?.['required']) {
-                <span>Name is required</span>
-              }
-              @if (name?.errors?.['minlength']) {
-                <span>Name must be at least 2 characters</span>
-              }
-            </div>
-          }
-        </div>
-        
-        <div class="form-group">
-          <label for="email">Your Email</label>
-          <input 
-            type="email" 
-            id="email" 
-            formControlName="email"
-            name="email"
-            placeholder="john@example.com"
-            class="form-control"
-            [class.error]="email?.invalid && email?.touched">
-          @if (email?.invalid && email?.touched) {
-            <div class="error-message">
-              @if (email?.errors?.['required']) {
-                <span>Email is required</span>
-              }
-              @if (email?.errors?.['email']) {
-                <span>Please enter a valid email address</span>
-              }
-            </div>
-          }
-        </div>
-        
-        <div class="form-group">
-          <label for="message">Your Message</label>
-          <textarea 
-            id="message" 
-            formControlName="message"
-            name="message"
-            rows="4"
-            placeholder="Tell me about your project or opportunity..."
-            class="form-control"
-            [class.error]="message?.invalid && message?.touched"></textarea>
-          @if (message?.invalid && message?.touched) {
-            <div class="error-message">
-              @if (message?.errors?.['required']) {
-                <span>Message is required</span>
-              }
-              @if (message?.errors?.['minlength']) {
-                <span>Message must be at least 10 characters</span>
-              }
-            </div>
-          }
-        </div>
-        
-        <button type="submit" class="btn-primary submit-btn" [disabled]="contactForm.invalid">
-          Send Message <i class="fa-solid fa-paper-plane"></i>
-        </button>
-      </form>
     </div>
   </div>
 </section>
