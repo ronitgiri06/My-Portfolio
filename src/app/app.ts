@@ -156,7 +156,7 @@ export class App implements AfterViewInit, OnDestroy {
       description: 'A full-stack application for managing conference room bookings with real-time availability, scheduling, and conflict resolution.',
       tech: 'Angular • Spring Boot • MySQL',
       image: 'project1.png',
-      github: 'https://github.com/',
+      github: 'https://github.com/ronitgiri06/roompilot.git',
       live: 'https://example.com/',
     },
     {
@@ -165,8 +165,8 @@ export class App implements AfterViewInit, OnDestroy {
       description: 'My personal portfolio built with Angular, featuring a modern UI with glassmorphism, responsive design, and smooth animations.',
       tech: 'Angular • TypeScript • CSS',
       image: 'project2.png',
-      github: 'https://github.com/',
-      live: 'https://example.com/',
+      github: 'https://github.com/ronitgiri06/My-Portfolio.git',
+      live: 'https://ronit-portfolio0.netlify.app/',
     },
   ];
 
