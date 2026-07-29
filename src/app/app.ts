@@ -171,13 +171,36 @@ export class App implements AfterViewInit, OnDestroy {
   ];
 
   // Submit contact form
-  onSubmitContact(): void {
-    if (this.contactForm.valid) {
-      console.log('Form submitted:', this.contactForm.value);
-      alert('Thank you for your message! I\'ll get back to you soon.');
-      this.contactForm.reset();
-    }
+  // Submit contact form with Netlify
+onSubmitContact(): void {
+  if (this.contactForm.valid) {
+    const form = document.querySelector('form') as HTMLFormElement;
+    
+    // Create FormData object
+    const formData = new FormData(form);
+    
+    // Add form name for Netlify
+    formData.append('form-name', 'contact');
+    
+    // Send data to Netlify
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData as any).toString()
+    })
+    .then(response => {
+      if (response.ok) {
+        alert('Thank you for your message! I\'ll get back to you soon.');
+        this.contactForm.reset();
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    })
+    .catch(() => {
+      alert('Something went wrong. Please try again.');
+    });
   }
+}
 
   // Getter methods for form controls
   get name() { return this.contactForm.get('name'); }
