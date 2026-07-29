@@ -73,7 +73,7 @@
       <a href="#projects" class="btn-primary">
         View my work <i class="fa-solid fa-arrow-right"></i>
       </a>
-      <a href="#contact" class="btn-secondary">
+      <a href="/form.html" target="_blank" class="btn-secondary">
         Let's talk <i class="fa-regular fa-comment"></i>
       </a>
     </div>
@@ -157,7 +157,6 @@
           @for (skill of category.skills; track skill.name) {
             <span class="skill-pill">
               {{ skill.name }}
-              <!-- <span class="level">· {{ skill.level }}%</span> -->
             </span>
           }
         </div>
@@ -216,7 +215,6 @@
     @for (project of projects; track project.id) {
       <div class="project-item reveal">
         <div class="project-thumb">
-          <!-- Image with proper sizing -->
           <img 
             [src]="project.image" 
             [alt]="project.title"
@@ -264,7 +262,7 @@
           <i class="fa-solid fa-envelope"></i>
           <div>
             <span class="label">Email</span>
-<a href="mailto:ronitgiri06&#64;gmail.com">ronitgiri06&#64;gmail.com</a>
+            <a href="mailto:ronitgiri06&#64;gmail.com">ronitgiri06&#64;gmail.com</a>
           </div>
         </div>
         <div class="contact-item">
@@ -284,98 +282,24 @@
       </div>
     </div>
 
-    <!-- Right side - Contact Form -->
+    <!-- Right side - Contact Info (replacing the form with a button) -->
     <div class="contact-form-wrapper reveal">
-  <div class="status-badge">
-    <span class="dot"></span>
-    Usually replies within a day
-  </div>
-  
-  <form 
-  [formGroup]="contactForm" 
-  (ngSubmit)="onSubmitContact()" 
-  class="contact-form"
-  data-netlify="true"
-  name="contact">
-  
-  <!-- This hidden field is REQUIRED -->
-  <input type="hidden" name="form-name" value="contact">
-  
-  <!-- Your form fields -->
-  <div class="form-group">
-    <label for="name">Your Name</label>
-    <input 
-      type="text" 
-      id="name" 
-      formControlName="name"
-      name="name"
-      placeholder="John Doe"
-      class="form-control"
-      [class.error]="name?.invalid && name?.touched">
-    @if (name?.invalid && name?.touched) {
-      <div class="error-message">
-        @if (name?.errors?.['required']) {
-          <span>Name is required</span>
-        }
-        @if (name?.errors?.['minlength']) {
-          <span>Name must be at least 2 characters</span>
-        }
+      <div class="status-badge">
+        <span class="dot"></span>
+        Usually replies within a day
       </div>
-    }
-  </div>
-  
-  <div class="form-group">
-    <label for="email">Your Email</label>
-    <input 
-      type="email" 
-      id="email" 
-      formControlName="email"
-      name="email"
-      placeholder="john@example.com"
-      class="form-control"
-      [class.error]="email?.invalid && email?.touched">
-    @if (email?.invalid && email?.touched) {
-      <div class="error-message">
-        @if (email?.errors?.['required']) {
-          <span>Email is required</span>
-        }
-        @if (email?.errors?.['email']) {
-          <span>Please enter a valid email address</span>
-        }
+      
+      <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; text-align: center; gap: 20px;">
+        <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; max-width: 400px;">
+          Ready to start a project or just want to say hello? I'd love to hear from you!
+        </p>
+        <a href="/form.html" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 1.1rem; text-decoration: none;">
+          Contact Me <i class="fa-solid fa-arrow-right"></i>
+        </a>
       </div>
-    }
-  </div>
-  
-  <div class="form-group">
-    <label for="message">Your Message</label>
-    <textarea 
-      id="message" 
-      formControlName="message"
-      name="message"
-      rows="4"
-      placeholder="Tell me about your project or opportunity..."
-      class="form-control"
-      [class.error]="message?.invalid && message?.touched"></textarea>
-    @if (message?.invalid && message?.touched) {
-      <div class="error-message">
-        @if (message?.errors?.['required']) {
-          <span>Message is required</span>
-        }
-        @if (message?.errors?.['minlength']) {
-          <span>Message must be at least 10 characters</span>
-        }
-      </div>
-    }
-  </div>
-  
-  <button type="submit" class="btn-primary submit-btn" [disabled]="contactForm.invalid">
-    Send Message <i class="fa-solid fa-paper-plane"></i>
-  </button>
-</form>
-</div>
+    </div>
   </div>
 </section>
-
 
 <!-- ===================== FOOTER ===================== -->
 <footer class="footer">
@@ -384,8 +308,8 @@
   </div>
   <span>&copy; {{ currentYear }} Ronit Giri. Built with Angular.</span>
   <div class="footer-links">
-    <a href="https://github.com/" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
-    <a href="https://linkedin.com/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
-    <a href="mailto:ronit.giri@example.com"><i class="fa-solid fa-envelope"></i></a>
+    <a href="https://github.com/ronitgiri06" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/ronit-giri" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="mailto:ronitgiri06@gmail.com"><i class="fa-solid fa-envelope"></i></a>
   </div>
 </footer>

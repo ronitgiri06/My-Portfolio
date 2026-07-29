@@ -24,6 +24,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/form.html",
               "src/success.html",
               {
                 "glob": "**/*",
