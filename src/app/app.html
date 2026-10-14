@@ -1,4 +1,13 @@
-<!-- ambient background -->
+<!-- ===================== 3D BACKGROUND CANVAS ===================== -->
+<div id="three-canvas" aria-hidden="true"></div>
+
+<!-- ===================== CURSOR GLOW ===================== -->
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<!-- ===================== SCROLL PROGRESS ===================== -->
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ===================== AMBIENT BACKGROUND ===================== -->
 <div class="ambient" aria-hidden="true">
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
@@ -7,7 +16,7 @@
 </div>
 
 <!-- ===================== NAV ===================== -->
-<nav class="nav">
+<nav class="nav" id="navbar">
   <div class="nav-brand">
     Ronit<span class="accent">.</span>
   </div>
@@ -15,7 +24,7 @@
   <ul class="nav-links">
     @for (link of navLinks; track link.href) {
       <li>
-        <a [href]="link.href">
+        <a [href]="link.href" (click)="closeMobileMenu()">
           {{ link.label }}
           <span class="indicator"></span>
         </a>
@@ -39,10 +48,15 @@
   </div>
 </nav>
 
-<!-- mobile drawer -->
+<!-- ===================== MOBILE DRAWER ===================== -->
 <div class="mobile-drawer" [class.open]="mobileMenuOpen()">
   @for (link of navLinks; track link.href; let i = $index) {
-    <a [href]="link.href" (click)="closeMobileMenu()" [style.--i]="i">{{ link.label }}</a>
+    <a 
+      [href]="link.href" 
+      (click)="closeMobileMenu()" 
+      [style.animation-delay]="i * 0.08 + 's'">
+      {{ link.label }}
+    </a>
   }
   <a href="/Ronit_Giri_Resume.pdf" download class="resume-btn" (click)="closeMobileMenu()">
     <i class="fa-solid fa-download"></i><span>Resume</span>
@@ -50,18 +64,22 @@
 </div>
 
 <!-- ===================== HERO ===================== -->
-<header class="hero" id="hero">
+<header class="hero" id="hero" (mousemove)="onHeroMouseMove($event)" (mouseleave)="resetHeroTilt()">
   <div class="hero-content">
     <div class="hero-badge">
       <span class="dot"></span>
       Open to opportunities
     </div>
 
-    <h1 class="hero-title">
-      Hey, I'm <span class="gradient-text">Ronit Giri</span><span class="cursor" aria-hidden="true"></span>
+    <h1 class="hero-title glitched">
+      Hey, I'm <span class="gradient-text">Ronit Giri</span>
+      <span class="typewriter-cursor" aria-hidden="true"></span>
     </h1>
 
-    <p class="hero-role">// <span class="accent">Java Full Stack</span> Developer</p>
+    <p class="hero-role">
+      <span class="typing-text"></span>
+      <span class="accent"> Developer</span>
+    </p>
 
     <p class="hero-description">
       I build fast, responsive web apps end to end — clean Angular front ends
@@ -70,23 +88,48 @@
     </p>
 
     <div class="hero-actions">
-      <a href="#projects" class="btn-primary">
+      <a href="#projects" class="btn-primary btn-glow">
         View my work <i class="fa-solid fa-arrow-right"></i>
       </a>
-      <a href="/form.html" target="_blank" class="btn-secondary">
+      <a href="#contact" class="btn-secondary">
         Let's talk <i class="fa-regular fa-comment"></i>
       </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number" [attr.data-count]="2">0</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number" [attr.data-count]="4">0</span>
+        <span class="stat-label">Tech Stacks</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number" [attr.data-count]="1">0</span>
+        <span class="stat-label">Certificates</span>
+      </div>
     </div>
   </div>
 
   <!-- Hero Visual with Profile Image -->
   <div class="hero-visual">
-    <div class="profile-image-wrapper">
+    <div class="profile-image-wrapper" [style.transform]="tiltStyle(1)">
+      <div class="profile-ring"></div>
       <img 
         src="hero.png" 
         alt="Ronit Giri - Java Full Stack Developer"
         class="profile-image">
       <div class="profile-glow"></div>
+      <div class="floating-code" aria-hidden="true">
+        <span>&lt;/&gt;</span>
+        <span>&#123; &#125;</span>
+        <span>&#64;</span>
+        <span>#</span>
+      </div>
     </div>
   </div>
 </header>
@@ -98,41 +141,50 @@
   <p class="section-subtitle">A brief story of who I am and what drives me as a developer.</p>
 
   <div class="about-grid">
-    <div class="about-text reveal">
+    <div class="about-text reveal holographic">
       <p>
-        I'm <span class="highlight">Ronit</span>, a BCA student at IGNOU and an aspiring
-        <span class="highlight">Java Full Stack Developer</span> who enjoys building modern,
-        scalable, user-friendly web applications.
+        I'm <span class="highlight">Ronit Giri</span>, a BCA student at IGNOU and a 
+        <span class="highlight">Java Full Stack Developer</span> who builds modern, 
+        scalable web applications with clean, maintainable code.
       </p>
       <p>
-        I like owning a feature end to end — from an intuitive Angular
-        interface down to a well-modeled Spring Boot and MySQL backend.
+        I specialize in end-to-end development — from crafting responsive 
+        <span class="highlight">Angular</span> interfaces to designing robust 
+        <span class="highlight">Spring Boot</span> REST APIs with 
+        <span class="highlight">MySQL</span> databases.
       </p>
       <p>
-        Every project is a chance to write cleaner code, sharpen my
-        problem-solving, and pick up the tools that help me grow as a developer.
+        Every project I build is an opportunity to write cleaner code, solve real problems, 
+        and grow as a developer.
       </p>
     </div>
 
-    <!-- Quick Overview - Small cards with 3rd image content -->
     <div class="about-sidebar">
-      <div class="about-card reveal">
-        <div class="emoji-big">🎓</div>
+      <div class="about-card reveal holographic">
+        <div class="icon-big">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
         <h4>Education</h4>
         <p>BCA • IGNOU</p>
       </div>
-      <div class="about-card reveal">
-        <div class="emoji-big">💻</div>
+      <div class="about-card reveal holographic">
+        <div class="icon-big">
+          <i class="fa-solid fa-code"></i>
+        </div>
         <h4>Specialization</h4>
         <p>Java Full Stack Development</p>
       </div>
-      <div class="about-card reveal">
-        <div class="emoji-big">⚡</div>
+      <div class="about-card reveal holographic">
+        <div class="icon-big">
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
         <h4>Tech Stack</h4>
         <p>Angular • Spring Boot • MySQL</p>
       </div>
-      <div class="about-card reveal">
-        <div class="emoji-big">📍</div>
+      <div class="about-card reveal holographic">
+        <div class="icon-big">
+          <i class="fa-solid fa-location-dot"></i>
+        </div>
         <h4>Location</h4>
         <p>India</p>
       </div>
@@ -148,14 +200,15 @@
 
   <div class="skills-container">
     @for (category of skillCategories; track category.name) {
-      <div class="skill-category reveal" #skillCard>
+      <div class="skill-category reveal holographic" #skillCard>
         <div class="category-header">
           <div class="category-icon"><i [class]="category.icon"></i></div>
           <h3>{{ category.name }}</h3>
+          <span class="skill-count">{{ category.skills.length }}</span>
         </div>
         <div class="skill-pills">
-          @for (skill of category.skills; track skill.name) {
-            <span class="skill-pill">
+          @for (skill of category.skills; track skill.name; let i = $index) {
+            <span class="skill-pill" [style.animation-delay]="i * 0.05 + 's'">
               {{ skill.name }}
             </span>
           }
@@ -173,7 +226,7 @@
 
   <div class="timeline-simple">
     @for (item of education; track item.degree) {
-      <div class="timeline-entry reveal">
+      <div class="timeline-entry reveal holographic">
         <div class="year">{{ item.period }}</div>
         <div class="entry-content">
           <h4>{{ item.degree }}</h4>
@@ -193,8 +246,10 @@
 
   <div class="cert-grid">
     @for (cert of certificates; track cert.title) {
-      <div class="cert-item reveal">
-        <div class="cert-emoji">{{ cert.emoji }}</div>
+      <div class="cert-item reveal holographic">
+        <div class="cert-icon">
+          <i class="fa-solid fa-certificate"></i>
+        </div>
         <div class="cert-info">
           <h4>{{ cert.title }}</h4>
           <div class="issuer">{{ cert.issuer }}</div>
@@ -208,18 +263,21 @@
 <!-- ===================== PROJECTS ===================== -->
 <section id="projects">
   <div class="section-label">05 — projects</div>
-  <h2 class="section-title">Things I've <span class="gradient-text">shipped</span>.</h2>
+  <h2 class="section-title">Things I've <span class="gradient-text">created</span>.</h2>
   <p class="section-subtitle">A selection of projects that showcase my full-stack capabilities.</p>
 
   <div class="projects-grid">
-    @for (project of projects; track project.id) {
-      <div class="project-item reveal">
+    @for (project of projects; track project.id; let i = $index) {
+      <div class="project-item reveal holographic" [style.animation-delay]="i * 0.1 + 's'">
         <div class="project-thumb">
           <img 
             [src]="project.image" 
             [alt]="project.title"
             class="project-image">
           <div class="overlay"></div>
+          @if (project.hasLiveDemo) {
+            <div class="project-badge">Live</div>
+          }
         </div>
         <div class="project-body">
           <h3>{{ project.title }}</h3>
@@ -230,9 +288,15 @@
             }
           </div>
           <div class="project-links">
-            <a [href]="project.live" target="_blank" rel="noopener" class="link-live">
-              Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            @if (project.hasLiveDemo) {
+              <a 
+                [href]="project.live" 
+                target="_blank" 
+                rel="noopener" 
+                class="link-live">
+                Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            }
             <a [href]="project.github" target="_blank" rel="noopener" class="link-code">
               <i class="fa-brands fa-github"></i> Code
             </a>
@@ -250,7 +314,7 @@
   <p class="section-subtitle">Have a role, project, or just want to say hi? I'd love to hear from you.</p>
 
   <div class="contact-wrapper">
-    <div class="contact-card reveal">
+    <div class="contact-card reveal holographic">
       <div class="contact-header">
         <h3>Get in touch</h3>
         <p>Let's connect and build something amazing together!</p>
@@ -278,6 +342,13 @@
             <a href="https://github.com/ronitgiri06" target="_blank">github.com/ronitgiri06</a>
           </div>
         </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-map-pin"></i>
+          <div>
+            <span class="label">Location</span>
+            <span style="color: var(--text); font-size: .92rem; font-weight: 500;">India</span>
+          </div>
+        </div>
       </div>
 
       <div class="contact-divider"></div>
@@ -288,7 +359,7 @@
           Usually replies within a day
         </div>
         <div class="contact-actions">
-          <a href="mailto:ronitgiri06@gmail.com" class="btn-primary">
+          <a href="mailto:ronitgiri06&#64;gmail.com" class="btn-primary btn-glow">
             <i class="fa-solid fa-envelope"></i>
             Email Me
           </a>
@@ -307,6 +378,6 @@
   <div class="footer-links">
     <a href="https://github.com/ronitgiri06" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
     <a href="https://www.linkedin.com/in/ronit-giri" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
-    <a href="mailto:ronitgiri06@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    <a href="mailto:ronitgiri06&#64;gmail.com"><i class="fa-solid fa-envelope"></i></a>
   </div>
 </footer>
