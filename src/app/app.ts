@@ -101,7 +101,6 @@ export class App implements OnDestroy {
 
   readonly certificates: Certificate[] = [
     { emoji: '📜', title: 'Java Full Stack Development', issuer: 'Training Program', date: '2026' },
-    { emoji: '📜', title: 'Java Full Stack Development', issuer: 'Training Program', date: '2026' },
   ];
 
   readonly projects = signal<Project[]>([
