@@ -127,6 +127,15 @@ export class App implements AfterViewInit, OnDestroy {
         { name: 'VS Code / IntelliJ' },
       ],
     },
+    {
+      name: 'Tools & Workflow',
+      icon: 'fa-solid fa-toolbox',
+      skills: [
+        { name: 'Git & GitHub' },
+        { name: 'Postman' },
+        { name: 'VS Code / IntelliJ' },
+      ],
+    },
   ];
 
   // Education Data
@@ -149,6 +158,7 @@ export class App implements AfterViewInit, OnDestroy {
 
   // Certificates Data
   readonly certificates: Certificate[] = [
+    { emoji: '📜', title: 'Java Full Stack Development', issuer: 'Training Program', date: '2026' },
     { emoji: '📜', title: 'Java Full Stack Development', issuer: 'Training Program', date: '2026' },
   ];
 
@@ -193,27 +203,39 @@ export class App implements AfterViewInit, OnDestroy {
   // CONSTRUCTOR
   // ==========================================================================
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    this.isBrowser = isPlatformBrowser(this.platformId);
+  this.isBrowser = isPlatformBrowser(this.platformId);
+
+  if (this.isBrowser) {
+    console.warn('APP COMPONENT LOADED!');
+    console.warn('PROJECT COUNT:', this.projects.length);
   }
+}
 
   // ==========================================================================
   // LIFECYCLE HOOKS
   // ==========================================================================
   ngAfterViewInit(): void {
-    if (!this.isBrowser) return;
+  if (!this.isBrowser) return;
 
-    // Initialize all features after DOM is ready
-    setTimeout(() => {
-      this.setupRevealObserver();
-      this.setupSkillObserver();
-      this.setupScrollProgress();
-      this.setupCursorGlow();
-      this.setupTypingEffect();
-      this.setupCounterAnimation();
-      this.initThreeJS();
-      this.setupNavScrollEffect();
-    }, 200);
-  }
+  console.log('========== PROJECT DEBUG ==========');
+
+  console.log('TypeScript projects:', this.projects);
+  console.log('TypeScript project count:', this.projects.length);
+
+  setTimeout(() => {
+    const counter = document.querySelector('.stat-number');
+
+    console.log('HTML counter:', counter?.outerHTML);
+    console.log('HTML target:', counter?.getAttribute('data-count'));
+
+    console.log(
+      'Rendered project cards:',
+      document.querySelectorAll('.project-item').length
+    );
+
+    // Keep your existing initialization calls here.
+  }, 200);
+}
 
   ngOnDestroy(): void {
     this.observer?.disconnect();
@@ -406,45 +428,45 @@ export class App implements AfterViewInit, OnDestroy {
   // ==========================================================================
   // COUNTER ANIMATION
   // ==========================================================================
-  private setupCounterAnimation(): void {
-    const counters = document.querySelectorAll('.stat-number');
-    if (!counters.length) return;
+  
+private setupCounterAnimation(): void {
+  const counters = document.querySelectorAll('.stat-number');
 
-    const animateCounter = (element: Element) => {
-      const target = parseInt(element.getAttribute('data-count') || '0');
-      let current = 0;
-      const increment = target / 40;
-      const duration = 1500;
-      const stepTime = duration / 40;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
 
-      const updateCounter = () => {
-        current += increment;
-        if (current < target) {
-          element.textContent = Math.round(current).toString();
-          setTimeout(updateCounter, stepTime);
-        } else {
-          element.textContent = target.toString();
-        }
-      };
+        const element = entry.target as HTMLElement;
+        const target = Number(element.getAttribute('data-count')) || 0;
 
-      updateCounter();
-    };
+        let current = 0;
+        const duration = 1500;
+        const steps = 40;
+        const increment = target / steps;
+        const stepTime = duration / steps;
 
-    // Observe counters and animate when visible
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            animateCounter(entry.target);
-            observer.unobserve(entry.target);
+        const updateCounter = () => {
+          current += increment;
+
+          if (current < target) {
+            element.textContent = Math.round(current).toString();
+            setTimeout(updateCounter, stepTime);
+          } else {
+            element.textContent = target.toString();
           }
-        }
-      },
-      { threshold: 0.5 }
-    );
+        };
 
-    counters.forEach((counter) => observer.observe(counter));
-  }
+        updateCounter();
+        observer.unobserve(element);
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  counters.forEach((counter) => observer.observe(counter));
+}
+
 
   // ==========================================================================
   // NAV SCROLL EFFECT
