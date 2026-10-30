@@ -1531,20 +1531,20 @@ section {
     gap: 40px;
     text-align: center;
   }
-  
+
   .hero-content {
     align-items: center;
     padding-left: 0;
   }
-  
+
   .hero-description {
     max-width: 100%;
   }
-  
+
   .hero-actions {
     justify-content: center;
   }
-  
+
   .profile-image-wrapper {
     width: 300px;
     height: 300px;
@@ -1553,15 +1553,15 @@ section {
   .hero-stats {
     justify-content: center;
   }
-  
+
   .about-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .about-sidebar {
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .skills-container {
     grid-template-columns: 1fr;
   }
@@ -1585,32 +1585,32 @@ section {
   .nav-links {
     display: none;
   }
-  
+
   .nav-cta .resume-btn {
     display: none;
   }
-  
+
   .burger {
     display: flex;
   }
-  
+
   .hero {
     padding-top: 20px;
   }
-  
+
   .hero-title {
     font-size: 2.4rem;
   }
-  
+
   .profile-image-wrapper {
     width: 250px;
     height: 250px;
   }
-  
+
   .about-sidebar {
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .timeline-entry {
     grid-template-columns: 1fr;
     gap: 8px;
@@ -1659,16 +1659,16 @@ section {
     padding: 10px 28px;
     font-size: .9rem;
   }
-  
+
   .hero {
     padding-left: 4%;
     padding-right: 4%;
   }
-  
+
   .hero-title {
     font-size: 2rem;
   }
-  
+
   .profile-image-wrapper {
     width: 200px;
     height: 200px;
@@ -1682,32 +1682,32 @@ section {
   .stat-number {
     font-size: 1.4rem;
   }
-  
+
   .about-text {
     padding: 24px;
   }
-  
+
   .about-card {
     min-height: 100px;
     padding: 16px 12px;
   }
-  
+
   .about-card h4 {
     font-size: .75rem;
   }
-  
+
   .about-card p {
     font-size: .7rem;
   }
-  
+
   .projects-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .cert-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .footer {
     flex-direction: column;
     text-align: center;
@@ -1717,28 +1717,28 @@ section {
   .contact-card {
     padding: 24px 16px;
   }
-  
+
   .contact-details {
     grid-template-columns: 1fr;
     gap: 12px;
   }
-  
+
   .contact-item {
     padding: 10px 12px;
     gap: 12px;
   }
-  
+
   .contact-item i {
     width: 32px;
     height: 32px;
     min-width: 32px;
     font-size: .85rem;
   }
-  
+
   .contact-item a {
     font-size: .78rem;
   }
-  
+
   .contact-footer {
     flex-direction: column;
     align-items: stretch;

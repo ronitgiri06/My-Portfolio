@@ -96,10 +96,10 @@
       </a>
     </div>
 
-    <!-- Stats -->
+    <!-- Stats (With data-count for the counting animation) -->
     <div class="hero-stats">
       <div class="stat-item">
-        <span class="stat-number" [attr.data-count]="projects.length">0</span>
+        <span class="stat-number" [attr.data-count]="projects().length">0</span>
         <span class="stat-label">Projects</span>
       </div>
       <div class="stat-divider"></div>
@@ -115,7 +115,7 @@
     </div>
   </div>
 
-  <!-- Hero Visual with Profile Image -->
+  <!-- Hero Visual with Profile Image (Tilt effect restored) -->
   <div class="hero-visual">
     <div class="profile-image-wrapper" [style.transform]="tiltStyle(1)">
       <div class="profile-ring"></div>
@@ -136,9 +136,9 @@
 
 <!-- ===================== ABOUT ===================== -->
 <section id="about">
-  <div class="section-label">01 — about</div>
-  <h2 class="section-title">Turning ideas into <span class="gradient-text">working software</span>, one clean commit at a time.</h2>
-  <p class="section-subtitle">A brief story of who I am and what drives me as a developer.</p>
+  <div class="section-label reveal">01 — about</div>
+  <h2 class="section-title reveal">Turning ideas into <span class="gradient-text">working software</span>, one clean commit at a time.</h2>
+  <p class="section-subtitle reveal">A brief story of who I am and what drives me as a developer.</p>
 
   <div class="about-grid">
     <div class="about-text reveal holographic">
@@ -194,9 +194,9 @@
 
 <!-- ===================== SKILLS ===================== -->
 <section id="skills">
-  <div class="section-label">02 — skills</div>
-  <h2 class="section-title">The <span class="gradient-text">stack</span> I build with.</h2>
-  <p class="section-subtitle">Technologies and tools I'm proficient in, organized by domain.</p>
+  <div class="section-label reveal">02 — skills</div>
+  <h2 class="section-title reveal">The <span class="gradient-text">stack</span> I build with.</h2>
+  <p class="section-subtitle reveal">Technologies and tools I'm proficient in, organized by domain.</p>
 
   <div class="skills-container">
     @for (category of skillCategories; track category.name) {
@@ -220,9 +220,9 @@
 
 <!-- ===================== EDUCATION ===================== -->
 <section id="education">
-  <div class="section-label">03 — education</div>
-  <h2 class="section-title">Where I've been <span class="gradient-text">learning</span>.</h2>
-  <p class="section-subtitle">My academic journey and the institutions that shaped me.</p>
+  <div class="section-label reveal">03 — education</div>
+  <h2 class="section-title reveal">Where I've been <span class="gradient-text">learning</span>.</h2>
+  <p class="section-subtitle reveal">My academic journey and the institutions that shaped me.</p>
 
   <div class="timeline-simple">
     @for (item of education; track item.degree) {
@@ -240,9 +240,9 @@
 
 <!-- ===================== CERTIFICATES ===================== -->
 <section id="certificates">
-  <div class="section-label">04 — certificates</div>
-  <h2 class="section-title">Proof I <span class="gradient-text">followed through</span>.</h2>
-  <p class="section-subtitle">Certifications that validate my skills and commitment to growth.</p>
+  <div class="section-label reveal">04 — certificates</div>
+  <h2 class="section-title reveal">Proof I <span class="gradient-text">followed through</span>.</h2>
+  <p class="section-subtitle reveal">Certifications that validate my skills and commitment to growth.</p>
 
   <div class="cert-grid">
     @for (cert of certificates; track cert.title) {
@@ -262,12 +262,12 @@
 
 <!-- ===================== PROJECTS ===================== -->
 <section id="projects">
-  <div class="section-label">05 — projects</div>
-  <h2 class="section-title">Things I've <span class="gradient-text">created</span>.</h2>
-  <p class="section-subtitle">A selection of projects that showcase my full-stack capabilities.</p>
+  <div class="section-label reveal">05 — projects</div>
+  <h2 class="section-title reveal">Things I've <span class="gradient-text">created</span>.</h2>
+  <p class="section-subtitle reveal">A selection of projects that showcase my full-stack capabilities.</p>
 
   <div class="projects-grid">
-    @for (project of projects; track project.id; let i = $index) {
+    @for (project of projects(); track project.id; let i = $index) {
       <div class="project-item reveal holographic" [style.animation-delay]="i * 0.1 + 's'">
         <div class="project-thumb">
           <img 
@@ -309,9 +309,9 @@
 
 <!-- ===================== CONTACT ===================== -->
 <section id="contact">
-  <div class="section-label">06 — contact</div>
-  <h2 class="section-title">Let's build something <span class="gradient-text">good</span>.</h2>
-  <p class="section-subtitle">Have a role, project, or just want to say hi? I'd love to hear from you.</p>
+  <div class="section-label reveal">06 — contact</div>
+  <h2 class="section-title reveal">Let's build something <span class="gradient-text">good</span>.</h2>
+  <p class="section-subtitle reveal">Have a role, project, or just want to say hi? I'd love to hear from you.</p>
 
   <div class="contact-wrapper">
     <div class="contact-card reveal holographic">
