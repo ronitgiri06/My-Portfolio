@@ -1,46 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
-body{
-    /* padding: 0px; */
-    /* margin: 0px; */
+/* Global styles (src/styles.css) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-html,
-body{
-    background:
-        radial-gradient(circle at 85% 10%, rgba(24,224,196,.08), transparent 35%),
-        radial-gradient(circle at 15% 80%, rgba(24,224,196,.05), transparent 40%),
-        linear-gradient(135deg,#070b13,#0a101b,#111827);
-
-    background-attachment:fixed;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  -webkit-text-size-adjust: 100%;
 }
 
-body{
-    margin: 0;
-    font-family: "Inter", sans-serif;
-    color: white;
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #06120f; /* Matches --bg in app.css */
+  color: #e2f1eb;      /* Matches --text in app.css */
+  font-family: 'Onest', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
 
-    background:
-        /* Top-right glow */
-        radial-gradient(
-            circle at 85% 10%,
-            rgba(24, 224, 196, 0.08),
-            transparent 35%
-        ),
+::selection {
+  background: #2ae4b5; /* Matches --accent in app.css */
+  color: #04100d;      /* Matches --ink in app.css */
+}
 
-        /* Bottom-left subtle glow */
-        radial-gradient(
-            circle at 15% 80%,
-            rgba(24, 224, 196, 0.05),
-            transparent 40%
-        ),
-
-        /* Main background */
-        linear-gradient(
-            135deg,
-            #070b13 0%,
-            #0a101b 50%,
-            #111827 100%
-        );
-
-    min-height: 100vh;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }

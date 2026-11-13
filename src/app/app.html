@@ -1,383 +1,358 @@
-<!-- ===================== 3D BACKGROUND CANVAS ===================== -->
-<div id="three-canvas" aria-hidden="true"></div>
-
-<!-- ===================== CURSOR GLOW ===================== -->
-<div class="cursor-glow" aria-hidden="true"></div>
-
-<!-- ===================== SCROLL PROGRESS ===================== -->
-<div class="scroll-progress" aria-hidden="true"></div>
-
-<!-- ===================== AMBIENT BACKGROUND ===================== -->
-<div class="ambient" aria-hidden="true">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-  <div class="grid-overlay"></div>
-</div>
-
-<!-- ===================== NAV ===================== -->
-<nav class="nav" id="navbar">
-  <div class="nav-brand">
-    Ronit<span class="accent">.</span>
-  </div>
-
-  <ul class="nav-links">
-    @for (link of navLinks; track link.href) {
-      <li>
-        <a [href]="link.href" (click)="closeMobileMenu()">
-          {{ link.label }}
-          <span class="indicator"></span>
-        </a>
-      </li>
-    }
-  </ul>
-
-  <div class="nav-cta">
-    <a href="/Ronit_Giri_Resume.pdf" download class="resume-btn">
-      <i class="fa-solid fa-download"></i>
-      <span>Resume</span>
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#hero" (click)="closeMobileMenu()">
+      <span class="brand-mark">R</span>
+      <span class="brand-text">ronit giri</span>
     </a>
-    <button
-      class="burger"
-      [class.open]="mobileMenuOpen()"
-      (click)="toggleMobileMenu()"
-      [attr.aria-expanded]="mobileMenuOpen()"
-      aria-label="Toggle navigation menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
 
-<!-- ===================== MOBILE DRAWER ===================== -->
-<div class="mobile-drawer" [class.open]="mobileMenuOpen()">
-  @for (link of navLinks; track link.href; let i = $index) {
-    <a 
-      [href]="link.href" 
-      (click)="closeMobileMenu()" 
-      [style.animation-delay]="i * 0.08 + 's'">
-      {{ link.label }}
-    </a>
-  }
-  <a href="/Ronit_Giri_Resume.pdf" download class="resume-btn" (click)="closeMobileMenu()">
-    <i class="fa-solid fa-download"></i><span>Resume</span>
-  </a>
-</div>
+    <ul class="nav-links">
+      @for (link of navLinks; track link.href) {
+        <li><a [href]="link.href">{{ link.label }}</a></li>
+      }
+    </ul>
 
-<!-- ===================== HERO ===================== -->
-<header class="hero" id="hero" (mousemove)="onHeroMouseMove($event)" (mouseleave)="resetHeroTilt()">
-  <div class="hero-content">
-    <div class="hero-badge">
-      <span class="dot"></span>
-      Open to opportunities
+    <div class="nav-end">
+      <a href="/Ronit_Giri_Resume.pdf" download class="btn btn-small btn-outline">resume</a>
+      <button
+        type="button"
+        class="burger"
+        [class.open]="mobileMenuOpen()"
+        (click)="toggleMobileMenu()"
+        [attr.aria-expanded]="mobileMenuOpen()"
+        aria-controls="mobile-menu"
+        aria-label="Menu">
+        <span></span><span></span>
+      </button>
     </div>
-
-    <h1 class="hero-title glitched">
-      Hey, I'm <span class="gradient-text">Ronit Giri</span>
-      <span class="typewriter-cursor" aria-hidden="true"></span>
-    </h1>
-
-    <p class="hero-role">
-      <span class="typing-text"></span>
-      <span class="accent"> Developer</span>
-    </p>
-
-    <p class="hero-description">
-      I build fast, responsive web apps end to end — clean Angular front ends
-      wired to solid Spring Boot APIs and MySQL data. I care about the details
-      that make software feel good to use.
-    </p>
-
-    <div class="hero-actions">
-      <a href="#projects" class="btn-primary btn-glow">
-        View my work <i class="fa-solid fa-arrow-right"></i>
-      </a>
-      <a href="#contact" class="btn-secondary">
-        Let's talk <i class="fa-regular fa-comment"></i>
-      </a>
-    </div>
-
-    <!-- Stats (With data-count for the counting animation) -->
-    <div class="hero-stats">
-      <div class="stat-item">
-        <span class="stat-number" [attr.data-count]="projects().length">0</span>
-        <span class="stat-label">Projects</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <span class="stat-number" [attr.data-count]="skillCategories.length">0</span>
-        <span class="stat-label">Tech Stacks</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <span class="stat-number" [attr.data-count]="certificates.length">0</span>
-        <span class="stat-label">Certificates</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Hero Visual with Profile Image (Tilt effect restored) -->
-  <div class="hero-visual">
-    <div class="profile-image-wrapper" [style.transform]="tiltStyle(1)">
-      <div class="profile-ring"></div>
-      <img 
-        src="hero.png" 
-        alt="Ronit Giri - Java Full Stack Developer"
-        class="profile-image">
-      <div class="profile-glow"></div>
-      <div class="floating-code" aria-hidden="true">
-        <span>&lt;/&gt;</span>
-        <span>&#123; &#125;</span>
-        <span>&#64;</span>
-        <span>#</span>
-      </div>
-    </div>
-  </div>
+  </nav>
 </header>
 
-<!-- ===================== ABOUT ===================== -->
-<section id="about">
-  <div class="section-label reveal">01 — about</div>
-  <h2 class="section-title reveal">Turning ideas into <span class="gradient-text">working software</span>, one clean commit at a time.</h2>
-  <p class="section-subtitle reveal">A brief story of who I am and what drives me as a developer.</p>
+<!-- ===================== MOBILE MENU ===================== -->
+<div class="mobile-menu" id="mobile-menu" [class.open]="mobileMenuOpen()" [attr.aria-hidden]="!mobileMenuOpen()">
+  @for (link of navLinks; track link.href) {
+    <a [href]="link.href" (click)="closeMobileMenu()">{{ link.label }}</a>
+  }
+  <a href="/Ronit_Giri_Resume.pdf" download (click)="closeMobileMenu()">download resume</a>
+</div>
 
-  <div class="about-grid">
-    <div class="about-text reveal holographic">
-      <p>
-        I'm <span class="highlight">Ronit Giri</span>, a BCA student at IGNOU and a 
-        <span class="highlight">Java Full Stack Developer</span> who builds modern, 
-        scalable web applications with clean, maintainable code.
-      </p>
-      <p>
-        I specialize in end-to-end development — from crafting responsive 
-        <span class="highlight">Angular</span> interfaces to designing robust 
-        <span class="highlight">Spring Boot</span> REST APIs with 
-        <span class="highlight">MySQL</span> databases.
-      </p>
-      <p>
-        Every project I build is an opportunity to write cleaner code, solve real problems, 
-        and grow as a developer.
-      </p>
-    </div>
-
-    <div class="about-sidebar">
-      <div class="about-card reveal holographic">
-        <div class="icon-big">
-          <i class="fa-solid fa-graduation-cap"></i>
+<main>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-greeting">Hello, I'm</p>
+        <h1 class="hero-name">
+          <span>Ronit</span>
+          <span class="accent-text">Giri</span>
+        </h1>
+        <p class="hero-role">Java Full Stack Developer</p>
+        <p class="hero-intro">
+          I build fast, responsive web apps end to end clean Angular front ends wired to solid Spring Boot APIs and MySQL data. I care about the details that make software feel good to use.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn">View my work →</a>
+          <a href="mailto:ronitgiri06&#64;gmail.com" class="btn btn-ghost">Let's talk</a>
         </div>
-        <h4>Education</h4>
-        <p>BCA • IGNOU</p>
-      </div>
-      <div class="about-card reveal holographic">
-        <div class="icon-big">
-          <i class="fa-solid fa-code"></i>
-        </div>
-        <h4>Specialization</h4>
-        <p>Java Full Stack Development</p>
-      </div>
-      <div class="about-card reveal holographic">
-        <div class="icon-big">
-          <i class="fa-solid fa-layer-group"></i>
-        </div>
-        <h4>Tech Stack</h4>
-        <p>Angular • Spring Boot • MySQL</p>
-      </div>
-      <div class="about-card reveal holographic">
-        <div class="icon-big">
-          <i class="fa-solid fa-location-dot"></i>
-        </div>
-        <h4>Location</h4>
-        <p>India</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== SKILLS ===================== -->
-<section id="skills">
-  <div class="section-label reveal">02 — skills</div>
-  <h2 class="section-title reveal">The <span class="gradient-text">stack</span> I build with.</h2>
-  <p class="section-subtitle reveal">Technologies and tools I'm proficient in, organized by domain.</p>
-
-  <div class="skills-container">
-    @for (category of skillCategories; track category.name) {
-      <div class="skill-category reveal holographic" #skillCard>
-        <div class="category-header">
-          <div class="category-icon"><i [class]="category.icon"></i></div>
-          <h3>{{ category.name }}</h3>
-          <span class="skill-count">{{ category.skills.length }}</span>
-        </div>
-        <div class="skill-pills">
-          @for (skill of category.skills; track skill.name; let i = $index) {
-            <span class="skill-pill" [style.animation-delay]="i * 0.05 + 's'">
-              {{ skill.name }}
-            </span>
-          }
-        </div>
-      </div>
-    }
-  </div>
-</section>
-
-<!-- ===================== EDUCATION ===================== -->
-<section id="education">
-  <div class="section-label reveal">03 — education</div>
-  <h2 class="section-title reveal">Where I've been <span class="gradient-text">learning</span>.</h2>
-  <p class="section-subtitle reveal">My academic journey and the institutions that shaped me.</p>
-
-  <div class="timeline-simple">
-    @for (item of education; track item.degree) {
-      <div class="timeline-entry reveal holographic">
-        <div class="year">{{ item.period }}</div>
-        <div class="entry-content">
-          <h4>{{ item.degree }}</h4>
-          <div class="org">{{ item.institution }}</div>
-          <div class="desc">{{ item.description }}</div>
-        </div>
-      </div>
-    }
-  </div>
-</section>
-
-<!-- ===================== CERTIFICATES ===================== -->
-<section id="certificates">
-  <div class="section-label reveal">04 — certificates</div>
-  <h2 class="section-title reveal">Proof I <span class="gradient-text">followed through</span>.</h2>
-  <p class="section-subtitle reveal">Certifications that validate my skills and commitment to growth.</p>
-
-  <div class="cert-grid">
-    @for (cert of certificates; track cert.title) {
-      <div class="cert-item reveal holographic">
-        <div class="cert-icon">
-          <i class="fa-solid fa-certificate"></i>
-        </div>
-        <div class="cert-info">
-          <h4>{{ cert.title }}</h4>
-          <div class="issuer">{{ cert.issuer }}</div>
-          <div class="date">{{ cert.date }}</div>
-        </div>
-      </div>
-    }
-  </div>
-</section>
-
-<!-- ===================== PROJECTS ===================== -->
-<section id="projects">
-  <div class="section-label reveal">05 — projects</div>
-  <h2 class="section-title reveal">Things I've <span class="gradient-text">created</span>.</h2>
-  <p class="section-subtitle reveal">A selection of projects that showcase my full-stack capabilities.</p>
-
-  <div class="projects-grid">
-    @for (project of projects(); track project.id; let i = $index) {
-      <div class="project-item reveal holographic" [style.animation-delay]="i * 0.1 + 's'">
-        <div class="project-thumb">
-          <img 
-            [src]="project.image" 
-            [alt]="project.title"
-            class="project-image">
-          <div class="overlay"></div>
-          @if (project.hasLiveDemo) {
-            <div class="project-badge">Live</div>
-          }
-        </div>
-        <div class="project-body">
-          <h3>{{ project.title }}</h3>
-          <p>{{ project.description }}</p>
-          <div class="project-tags">
-            @for (tech of project.tech.split(' • '); track tech) {
-              <span>{{ tech }}</span>
-            }
+        
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">4</span>
+            <span class="stat-label">Projects</span>
           </div>
-          <div class="project-links">
-            @if (project.hasLiveDemo) {
-              <a 
-                [href]="project.live" 
-                target="_blank" 
-                rel="noopener" 
-                class="link-live">
-                Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
-            }
-            <a [href]="project.github" target="_blank" rel="noopener" class="link-code">
-              <i class="fa-brands fa-github"></i> Code
-            </a>
+          <div class="stat">
+            <span class="stat-num">10+</span>
+            <span class="stat-label">Tech Stacks</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">1</span>
+            <span class="stat-label">Certificates</span>
           </div>
         </div>
       </div>
-    }
-  </div>
-</section>
 
-<!-- ===================== CONTACT ===================== -->
-<section id="contact">
-  <div class="section-label reveal">06 — contact</div>
-  <h2 class="section-title reveal">Let's build something <span class="gradient-text">good</span>.</h2>
-  <p class="section-subtitle reveal">Have a role, project, or just want to say hi? I'd love to hear from you.</p>
-
-  <div class="contact-wrapper">
-    <div class="contact-card reveal holographic">
-      <div class="contact-header">
-        <h3>Get in touch</h3>
-        <p>Let's connect and build something amazing together!</p>
+      <div class="hero-visual">
+        <div class="hero-image-wrap">
+          <img src="hero.png" alt="Portrait of Ronit Giri" width="340" height="425">
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="section section-split" id="about">
+    <div class="section-title-wrap">
+      <h2>About</h2>
+    </div>
+    <div class="section-content">
+      <p class="lead-text">
+        BCA graduate (IGNOU) and entry-level Java Full Stack Developer with hands-on experience building full-stack web applications using Angular, TypeScript, Java, Spring Boot, and MySQL.
+      </p>
+      <p class="body-text">
+        I develop REST APIs, design relational databases, and implement application workflows, role-based functionality, and Stripe Checkout payment integration across multiple projects. I focus on building maintainable, user-friendly applications.
+      </p>
       
-      <div class="contact-details">
-        <div class="contact-item">
-          <i class="fa-solid fa-envelope"></i>
-          <div>
-            <span class="label">Email</span>
-            <a href="mailto:ronitgiri06&#64;gmail.com">ronitgiri06&#64;gmail.com</a>
-          </div>
+      <dl class="facts-grid">
+        <div class="fact-item">
+          <dt>Graduated</dt>
+          <dd>BCA at IGNOU (Oct 2026)</dd>
         </div>
-        <div class="contact-item">
-          <i class="fa-brands fa-linkedin-in"></i>
-          <div>
-            <span class="label">LinkedIn</span>
-            <a href="https://www.linkedin.com/in/ronit-giri" target="_blank">linkedin.com/in/ronit-giri</a>
-          </div>
+        <div class="fact-item">
+          <dt>Focus</dt>
+          <dd>Java Full Stack</dd>
         </div>
-        <div class="contact-item">
-          <i class="fa-brands fa-github"></i>
-          <div>
-            <span class="label">GitHub</span>
-            <a href="https://github.com/ronitgiri06" target="_blank">github.com/ronitgiri06</a>
-          </div>
+        <div class="fact-item">
+          <dt>Main Stack</dt>
+          <dd>Angular, Spring Boot, MySQL</dd>
         </div>
-        <div class="contact-item">
-          <i class="fa-solid fa-map-pin"></i>
-          <div>
-            <span class="label">Location</span>
-            <span style="color: var(--text); font-size: .92rem; font-weight: 500;">India</span>
-          </div>
+        <div class="fact-item">
+          <dt>Based in</dt>
+          <dd>Delhi, India</dd>
         </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section class="section" id="skills">
+    <h2 class="centered-title">Technical Skills</h2>
+    <div class="skills-grid">
+      @for (group of skillGroups; track group.name) {
+        <div class="skill-card">
+          <h3>{{ group.name }}</h3>
+          <ul class="skill-list">
+            @for (skill of group.skills; track skill) {
+              <li>{{ skill }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section class="section" id="experience">
+    <h2 class="centered-title">Experience</h2>
+    
+    <div class="experience-list">
+      @for (item of experience; track item.title) {
+        <div class="experience-card">
+          <div class="experience-head">
+            <div>
+              <h3>{{ item.title }}</h3>
+              <p class="experience-org">{{ item.organization }}</p>
+            </div>
+            <span class="experience-period">{{ item.period }}</span>
+          </div>
+          <p class="experience-desc">{{ item.description }}</p>
+          <ul class="experience-bullets">
+            @for (bullet of item.bullets; track bullet) {
+              <li>{{ bullet }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- ===================== EDUCATION & LANGUAGES ===================== -->
+  <section class="section" id="education">
+    <h2 class="centered-title">Education & Certificates</h2>
+    
+    <div class="timeline-horizontal">
+      @for (item of education; track item.title) {
+        <div class="timeline-item">
+          <span class="timeline-period">{{ item.period }}</span>
+          <h3>{{ item.title }}</h3>
+          <p class="timeline-inst">{{ item.institution }}</p>
+          <p class="timeline-desc">{{ item.description }}</p>
+          
+          <!-- Certificate Link -->
+          @if (item.institution === 'Om Institute of Technology') {
+            <a href="/certificate.png" target="_blank" rel="noopener" class="cert-link">
+              View Certificate ↗
+            </a>
+          }
+        </div>
+      }
+    </div>
+
+    @if (certificates.length) {
+      <div class="certs-wrap">
+        <h3 class="certs-title">Certificates</h3>
+        <ul class="certs-list">
+          @for (cert of certificates; track cert.title) {
+            <li>
+              <span class="cert-title">{{ cert.title }}</span>
+              <span class="cert-meta">{{ cert.issuer }}, {{ cert.year }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+
+    <div class="languages-wrap">
+      <h3 class="certs-title">Languages</h3>
+      <ul class="languages-list">
+        @for (lang of languages; track lang.name) {
+          <li>
+            <span class="lang-name">{{ lang.name }}</span>
+            <span class="lang-level">{{ lang.level }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section class="section-full" id="projects">
+    <div class="projects-header">
+      <h2>Selected Work</h2>
+    </div>
+
+    <div class="projects-carousel">
+      <button type="button" class="carousel-btn carousel-btn-prev" aria-label="Previous project" (click)="prevProject()"><</button>
+      
+      <div class="projects-track" [style.transform]="'translateX(-' + (activeProject() * 100) + '%)'">
+        @for (project of projects; track project.title; let i = $index) {
+          <article class="project-slide" [class.blurred]="activeProject() !== i">
+            <div class="project-image-wrap">
+              <img class="project-image" [src]="project.image" [alt]="project.title + ' screenshot'" loading="lazy">
+            </div>
+            <div class="project-info">
+              <h3>{{ project.title }}</h3>
+              <p class="project-desc">{{ project.description }}</p>
+              <p class="tech">Built with {{ project.tech.join(', ') }}</p>
+              <div class="project-links">
+                @if (project.liveUrl) {
+                  <a [href]="project.liveUrl" target="_blank" rel="noopener">Visit live site ↗</a>
+                }
+                <a [href]="project.github" target="_blank" rel="noopener">View source ↗</a>
+              </div>
+            </div>
+          </article>
+        }
       </div>
 
-      <div class="contact-divider"></div>
+      <button type="button" class="carousel-btn carousel-btn-next" aria-label="Next project" (click)="nextProject()">></button>
+    </div>
 
-      <div class="contact-footer">
-        <div class="contact-status">
-          <span class="status-dot"></span>
-          Usually replies within a day
-        </div>
-        <div class="contact-actions">
-          <a href="mailto:ronitgiri06&#64;gmail.com" class="btn-primary btn-glow">
-            <i class="fa-solid fa-envelope"></i>
-            Email Me
-          </a>
-        </div>
+    <div class="carousel-dots">
+      @for (project of projects; track project.title; let i = $index) {
+        <button type="button" class="dot" [class.active]="activeProject() === i" [attr.aria-label]="'Go to project ' + (i + 1)" (click)="goToProject(i)"></button>
+      }
+    </div>
+  </section>
+
+  <!-- ===================== REVIEWS (COMMENTED OUT) ===================== -->
+  <!-- 
+  <section class="section reviews-section" id="reviews">
+    <h2 class="centered-title">Client Reviews</h2>
+    
+    <div class="reviews-layout">
+      <div class="review-form-wrap">
+        <h3>Leave a review</h3>
+        <p class="review-form-sub">Worked with me? I'd love to hear how it went.</p>
+        
+        <form (ngSubmit)="submitReview()" #reviewForm="ngForm" class="review-form">
+          <div class="star-input-group">
+            <label>Your rating</label>
+            <div class="star-picker" role="radiogroup" aria-label="Star rating">
+              @for (star of [1,2,3,4,5]; track star) {
+                <button
+                  type="button"
+                  class="star-btn"
+                  [class.active]="star <= newRating()"
+                  [attr.aria-label]="star + ' star' + (star > 1 ? 's' : '')"
+                  (click)="setRating(star)">
+                  ★
+                </button>
+              }
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="reviewName">Name</label>
+            <input
+              type="text"
+              id="reviewName"
+              name="reviewName"
+              [(ngModel)]="newName"
+              placeholder="Your name"
+              required>
+          </div>
+
+          <div class="form-field">
+            <label for="reviewComment">Comment</label>
+            <textarea
+              id="reviewComment"
+              name="reviewComment"
+              [(ngModel)]="newComment"
+              rows="4"
+              placeholder="Tell me about your experience working with me..."
+              required></textarea>
+          </div>
+
+          <button type="submit" class="btn" [disabled]="!newRating() || !newName() || !newComment()">
+            Post review
+          </button>
+        </form>
+      </div>
+
+      <div class="review-list-wrap">
+        <h3>What people say</h3>
+        <p class="review-list-sub">{{ reviews().length }} review{{ reviews().length === 1 ? '' : 's' }}</p>
+        
+        <ul class="review-list">
+          @for (review of reviews(); track review.id) {
+            <li class="review-card">
+              <div class="review-head">
+                <span class="review-name">{{ review.name }}</span>
+                <span class="review-date">{{ review.date }}</span>
+              </div>
+              <div class="review-stars" aria-label="Rating">
+                @for (s of [1,2,3,4,5]; track s) {
+                  <span [class.filled]="s <= review.rating">★</span>
+                }
+              </div>
+              <p class="review-comment">{{ review.comment }}</p>
+            </li>
+          } @empty {
+            <li class="review-empty">
+              No reviews yet. Be the first to leave one!
+            </li>
+          }
+        </ul>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+  -->
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="contact-section" id="contact">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <h2>Say hi.</h2>
+        <p class="contact-lead">Email is the fastest way to reach me, whether it’s about a role or one of my projects.</p>
+      </div>
+      <div class="contact-right">
+        <a class="contact-email" href="mailto:ronitgiri06&#64;gmail.com">ronitgiri06&#64;gmail.com</a>
+        <p class="contact-elsewhere">
+          Also on
+          <a href="https://www.linkedin.com/in/ronit-giri" target="_blank" rel="noopener">LinkedIn</a>
+          and
+          <a href="https://github.com/ronitgiri06" target="_blank" rel="noopener">GitHub</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
 
 <!-- ===================== FOOTER ===================== -->
 <footer class="footer">
-  <div class="brand">
-    Ronit<span class="accent">.</span>
-  </div>
-  <span>&copy; {{ currentYear }} Ronit Giri. Built with Angular.</span>
-  <div class="footer-links">
-    <a href="https://github.com/ronitgiri06" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
-    <a href="https://www.linkedin.com/in/ronit-giri" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
-    <a href="mailto:ronitgiri06&#64;gmail.com"><i class="fa-solid fa-envelope"></i></a>
+  <div class="footer-inner">
+    <span>&copy; {{ currentYear }} Ronit Giri</span>
+    <a href="#hero" class="footer-top">Back to top ↑</a>
   </div>
 </footer>
