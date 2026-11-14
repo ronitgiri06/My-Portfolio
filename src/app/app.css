@@ -112,7 +112,7 @@ a:focus-visible, button:focus-visible {
   font-size: 1.1rem;
 }
 
-.brand-mark {
+/* .brand-mark {
   display: grid;
   place-items: center;
   width: 32px;
@@ -122,6 +122,26 @@ a:focus-visible, button:focus-visible {
   border-radius: 8px;
   font-size: 1.2rem;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+} */
+
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+  
+  /* The fix: Adding a teal border and a soft glow */
+  border: 1.5px solid var(--accent);
+  box-shadow: 0 0 12px rgba(42, 228, 181, 0.2);
+  
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s, border-color 0.3s;
+}
+
+/* Make it glow a bit brighter when someone hovers over it */
+.brand:hover .brand-logo {
+  /* transform: rotate(15deg) scale(1.1); */
+  border-color: var(--accent-hover);
+  box-shadow: 0 0 20px rgba(42, 228, 181, 0.4);
 }
 
 /* .brand:hover .brand-mark {

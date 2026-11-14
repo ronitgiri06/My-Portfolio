@@ -150,6 +150,7 @@ export class App {
       tech: ['Angular', 'TypeScript', 'HTML5', 'CSS3'],
       image: 'project3.png',
       github: 'https://github.com/ronitgiri06/OIT',
+      liveUrl: 'https://oit-institute.netlify.app/',
     },
     {
       title: 'Personal Portfolio Website',

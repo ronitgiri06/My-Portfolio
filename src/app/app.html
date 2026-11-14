@@ -2,7 +2,7 @@
 <header class="site-header">
   <nav class="nav" aria-label="Main">
     <a class="brand" href="#hero" (click)="closeMobileMenu()">
-      <span class="brand-mark">R</span>
+      <img src="/logo2.png" alt="Ronit Giri Logo" class="brand-logo">
       <span class="brand-text">ronit giri</span>
     </a>
 
@@ -169,11 +169,11 @@
           <p class="timeline-desc">{{ item.description }}</p>
           
           <!-- Certificate Link -->
-          @if (item.institution === 'Om Institute of Technology') {
+          <!-- @if (item.institution === 'Om Institute of Technology') {
             <a href="/certificate.png" target="_blank" rel="noopener" class="cert-link">
               View Certificate ↗
             </a>
-          }
+          } -->
         </div>
       }
     </div>
