@@ -552,7 +552,7 @@ a:focus-visible, button:focus-visible {
 }
 
 .experience-bullets li::before {
-  content: '→';
+  content: '>';
   position: absolute;
   left: 0;
   color: var(--accent);

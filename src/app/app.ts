@@ -99,7 +99,7 @@ export class App {
 
   readonly experience: ExperienceItem[] = [
     {
-      period: 'May 2026 – Oct 2026',
+      period: 'May 2026 - Oct 2026',
       title: 'Technical Project Assistance',
       organization: 'Om Institute of Technology',
       description: 'Unpaid role (6 months) supporting student college projects; guided by an institute teacher.',
